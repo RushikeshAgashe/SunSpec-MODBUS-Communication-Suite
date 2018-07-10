@@ -1,0 +1,10 @@
+[Unit]
+Description=Auto-start SunSpec web server on startup
+After=generic-board-startup.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/auto-start-web-server.sh
+
+[Install]
+WantedBy=multi-user.target
