@@ -1,0 +1,10 @@
+[Unit]
+Description=Enable UART pins
+After=generic-board-startup.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/enable-uart-pins.sh
+
+[Install]
+WantedBy=multi-user.target
