@@ -2,7 +2,7 @@ all:
 	#Configure git
 	read -p "Please enter your Name: " name && git config --global user.name $$name;
 	read -p "Please enter your NCSU email ID: " email && git config --global user.email $$email;
-
+	
 	#Clone the SunSpec MODBUS Communcation Suite apps
 	git clone https://github.ncsu.edu/ragashe/pysunspec-clone.git;
 	git clone https://github.ncsu.edu/ragashe/sunspec_web_server.git;
@@ -53,3 +53,6 @@ clean:
 	sudo rm -rf /usr/local/lib/python2.7/dist-packages/Django-1.9.13-py2.7.egg
 	sudo sed -i '/DEVICE_NAME/d' /etc/profile
 
+update:
+	cd pysunspec-clone && git pull https://github.ncsu.edu/ragashe/pysunspec-clone.git && cd ..
+	cd sunspec_web_server && git pull https://github.ncsu.edu/ragashe/sunspec_web_server.git && cd ..
