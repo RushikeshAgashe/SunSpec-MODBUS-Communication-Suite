@@ -4,7 +4,8 @@ all:
 	read -p "Please enter your NCSU email ID: " email && git config --global user.email $$email;
 	
 	#Clone the SunSpec MODBUS Communcation Suite apps
-	git clone https://github.ncsu.edu/ragashe/pysunspec-clone.git;
+	git clone https://github.ncsu.edu/ragashe/data_critical_app.git
+	git clone https://github.ncsu.edu/ragashe/data_logging_app.git
 	git clone https://github.ncsu.edu/ragashe/sunspec_web_server.git;
 	mkdir -p sunspec_database;
 	
@@ -17,6 +18,8 @@ all:
 	tar -xvzf /home/debian/packages/Django-1.9.13.tar.gz -C /home/debian/packages/
 	cd /home/debian/packages/Django-1.9.13 && sudo python setup.py install;
 	
+	#Install stunnel4
+	sudo apt-get install stunnel4
 	#Download and Install sqlitebrowser (Optional: Uncomment line below to install)
 	#sudo apt-get -y install sqlitebrowser;
 
@@ -47,12 +50,14 @@ clean:
 	#Remove SunSpec MODBUS Communication Suite apps
 	sudo rm -rf sunspec_web_server;
 	sudo rm -rf sunspec_database;
-	sudo rm -rf pysunspec-clone;
+	sudo rm -rf data_critical_app;
+	sudo rm -rf data_logging_app;
 
 	#Remove Django Installation
 	sudo rm -rf /usr/local/lib/python2.7/dist-packages/Django-1.9.13-py2.7.egg
 	sudo sed -i '/DEVICE_NAME/d' /etc/profile
 
 update:
-	cd pysunspec-clone && git pull https://github.ncsu.edu/ragashe/pysunspec-clone.git && cd ..
+	cd data_critical_app && git pull https://github.ncsu.edu/ragashe/data_critical_app.git && cd ..
+	cd data_logging_app && git pull https://github.ncsu.edu/ragashe/data_logging_app.git && cd ..
 	cd sunspec_web_server && git pull https://github.ncsu.edu/ragashe/sunspec_web_server.git && cd ..
